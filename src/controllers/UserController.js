@@ -21,8 +21,8 @@ const createUser = async (req, res) => {
                 message: 'The password is equal to confirmPassword'
             })
         }
-        const response = await UserService.createUser()
-        return res.status(200).json(res)
+        const response = await UserService.createUser(req.body)
+        return res.status(200).json(response)
     } catch(e) {
         return res.status(404).json({
             message: e
