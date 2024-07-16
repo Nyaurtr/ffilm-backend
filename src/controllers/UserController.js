@@ -22,8 +22,8 @@ const createUser = async (req, res) => {
             })
         }
         console.log('isCheckEmail', isCheckEmail);
-        // const res = await UserService.createUser()
-        // return res.status(200).json(res)
+        const res = await UserService.createUser()
+        return res.status(200).json(res)
     } catch(e) {
         return res.status(404).json({
             message: e
