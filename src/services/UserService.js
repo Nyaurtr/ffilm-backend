@@ -1,8 +1,8 @@
 const User = require("../models/UserModel")
 
-const createUser = (newUSer) => {
+const createUser = (newUser) => {
     return new Promise(asycn (resolve, reject) => {
-        const {name, email, password, confirmPassword, phone} = newUSer
+        const {name, email, password, confirmPassword, phone} = newUser
         try {
             const createUser = await User.create ({
                 name, 
