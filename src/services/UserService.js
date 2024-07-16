@@ -1,21 +1,30 @@
 const User = require("../models/UserModel")
 
 const createUser = (newUser) => {
-    return new Promise(asycn (resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         const {name, email, password, confirmPassword, phone} = newUser
         try {
-            const createUser = await User.create ({
+            const checkUser = await User.findOne({
+                email:email
+            })
+            if (checkUser != null){
+                resolve({
+                    status: 'OK',
+                    message: 'the email had already'
+                })
+            }
+            const createdUser = await User.create ({
                 name, 
                 email, 
                 password, 
                 confirmPassword, 
                 phone
             })
-            if(createUser){
+            if(createdUser){
                 resolve({
                     status: 'ok',
                     message: 'SUCCESS',
-                    data: createUser
+                    data: createdUser
                 })
             }
         } catch(e) {
