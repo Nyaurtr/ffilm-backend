@@ -1,4 +1,4 @@
-const User = require("../model/UserModel")
+const User = require("../models/UserModel")
 
 const createUser = (newUSer) => {
     return new Promise(asycn (resolve, reject) => {
