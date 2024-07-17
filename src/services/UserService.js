@@ -1,6 +1,7 @@
 const User = require("../models/UserModel")
 const bcrypt = require("bcrypt")
 const { genneralAccessToken, genneralRefreshToken } = require("./JwtService")
+const { JsonWebTokenError } = require("jsonwebtoken")
 
 const createUser = (newUser) => {
     return new Promise(async (resolve, reject) => {
@@ -166,6 +167,7 @@ const getDetailsUser = (id) => {
         }
     })
 }
+
 
 module.exports = {
     createUser,
