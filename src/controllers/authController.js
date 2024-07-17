@@ -4,13 +4,16 @@ const jwt = require("jsonwebtoken");
 const generateToken = require("../utils/generateToken");
 
 const signup = async (req, res) => {
+  const data = req.body;
+  const { username, password, email, confirmPassword } = data;
   try {
-    const data = req.body;
-    const { username, password, email, confirmPassword } = data;
     const checkUser = await User.findOne({
-      email:email,
-      username:username
-    })
+      $or: [
+        { email: email },
+        { username: username }
+      ]
+    });
+    console.log(checkUser)
     if (!username || !email || !password || !confirmPassword){
       return res.status(500).send({
           status: 'failure',
@@ -26,26 +29,26 @@ const signup = async (req, res) => {
         status: "failure",
         message: "the account had already"
       })
-    }
+    };
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    // const createduser = new User({
-    //   username: username,
-    //   password: hashedPassword,
-    //   email: email,
-    // });
-    // const saveuser = await createduser.save();
-    // res.status(200).send({
-    //   status: "success",
-    //   message: "user saved successfully",
-    //   data: {
-    //     user: username,
-    //   },
-    // });
+    const createduser = new User({
+      username: username,
+      password: hashedPassword,
+      email: email,
+    });
+    const saveuser = await createduser.save();
+    res.status(200).send({
+      status: "success",
+      message: "user saved successfully",
+      data: {
+        user: username,
+      },
+    });
   } catch (e) {
     res.status(500).send({
       status: "failure",
-      message: e.message,
+      message: e.message
     });
   }
 };
