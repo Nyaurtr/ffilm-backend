@@ -6,6 +6,8 @@ const generateToken = require("../utils/generateToken");
 const signup = async (req, res) => {
   const data = req.body;
   const { username, password, email, confirmPassword } = data;
+  const reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+  const isCheckEmail = reg.test(email)
   try {
     const checkUser = await User.findOne({
       $or: [
@@ -13,11 +15,15 @@ const signup = async (req, res) => {
         { username: username }
       ]
     });
-    console.log(checkUser)
     if (!username || !email || !password || !confirmPassword){
       return res.status(500).send({
           status: 'failure',
           message: 'The input is required'
+      })
+    } else if (!isCheckEmail) {
+      return res.status(500).send({
+        status:'failure',
+        message: 'The email is not in right format'
       })
     } else if (password !== confirmPassword) {
       return res.status(500).send({
