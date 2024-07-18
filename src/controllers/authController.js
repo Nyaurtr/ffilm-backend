@@ -120,6 +120,7 @@ const logout = async (req, res) => {
   }
 };
 const verify = async (req, res, next) => {
+  console.log(req.headers.authorization)
   const authHeader = req.headers.authorization;
   if (!authHeader) {
     res.status(403).json("You are not authorized");
@@ -127,7 +128,7 @@ const verify = async (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     if (authHeader) {
-      jwt.verify(token, "YOUR_SECRET_KEY", (err, user) => {
+      jwt.verify(token, "BackendHellRefresh", (err, user) => {
         if (err) {
           throw new Error("token is not valid!");
         }
@@ -150,11 +151,13 @@ const refresh = async (req, res) => {
       message: "You are not authenticated!",
     });
   }
+  console.log(refreshToken)
   try {
     const token = await User.findOne(
       { jwtToken: refreshToken },
       { jwtToken: true }
     );
+    console.log(token)
     if (!token) {
       res.status(200).send({
         status: "failure",
@@ -163,7 +166,7 @@ const refresh = async (req, res) => {
     }
     jwt.verify(
       refreshToken,
-      "YOUR_SECRETKEY_REFRESHTOKEN",
+      "BackendHellRefresh",
       async (err, user) => {
         if (err) {
           throw new Error("token is not valid!");
