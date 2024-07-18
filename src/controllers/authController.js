@@ -128,7 +128,7 @@ const verify = async (req, res, next) => {
   const token = authHeader.split(" ")[1];
   try {
     if (authHeader) {
-      jwt.verify(token, "BackendHellRefresh", (err, user) => {
+      jwt.verify(token, "mySecretKeyfromenv", (err, user) => {
         if (err) {
           throw new Error("token is not valid!");
         }
@@ -166,7 +166,7 @@ const refresh = async (req, res) => {
     }
     jwt.verify(
       refreshToken,
-      "BackendHellRefresh",
+      "myRefreshSecretKeyfromenv",
       async (err, user) => {
         if (err) {
           throw new Error("token is not valid!");
