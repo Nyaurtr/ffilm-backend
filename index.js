@@ -9,7 +9,7 @@ const app = express();
 connectDB();
 // app.use(cors());
 app.use(cors({
-  origin: ["backend-deploy-alpha-nine.vercel.app"],
+  origin: ["https://ffilm.id.vn"],
   methods: ["POST", "GET", "PUT", "DELETE"],
   credentials: true
 }));
