@@ -10,7 +10,7 @@ connectDB();
 // app.use(cors());
 app.use(cors({
   origin: ["https://ffilm.id.vn"],
-  methods: ["POST", "GET"],
+  methods: ["POST", "GET", "PUT", "DELETE"],
   credentials: true
 }));
 app.use(express.json());
