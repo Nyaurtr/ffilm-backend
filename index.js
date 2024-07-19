@@ -7,7 +7,12 @@ const commentRoute = require("./src/routes/commentRoute");
 const PORT = 8000;
 const app = express();
 connectDB();
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: ["https://ffilm.id.vn"],
+  methods: ["POST", "GET"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", userRoute);
