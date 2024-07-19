@@ -9,7 +9,7 @@ const app = express();
 connectDB();
 // app.use(cors());
 app.use(cors({
-  origin: ["https://frontend-roan-mu.vercel.app","http://localhost:3000"],
+  origin: ["https://frontend-roan-mu.vercel.app/login","http://localhost:3000"],
   methods: ["POST", "GET", "PUT", "DELETE"],
   credentials: true
 }));
