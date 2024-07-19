@@ -9,7 +9,7 @@ const app = express();
 connectDB();
 // app.use(cors());
 app.use(cors({
-  origin: ["https://ffilm.id.vn"],
+  origin: ["https://ffilm.id.vn","http://localhost:3000"],
   methods: ["POST", "GET", "PUT", "DELETE"],
   credentials: true
 }));
