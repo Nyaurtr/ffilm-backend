@@ -9,7 +9,11 @@ const app = express();
 connectDB();
 // app.use(cors());
 app.use(cors({
+<<<<<<< Updated upstream
   origin: ["https://frontend-roan-mu.vercel.app/login","http://localhost:3000"],
+=======
+  origin: ["https://ffilm.id.vn","http://localhost:3000","https://demo2-swart-six.vercel.app"],
+>>>>>>> Stashed changes
   methods: ["POST", "GET", "PUT", "DELETE"],
   credentials: true
 }));
