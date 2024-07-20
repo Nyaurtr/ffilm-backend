@@ -1,5 +1,5 @@
 const Article = require("../Models/articleModel");
-const User = require("../Models/userModel");
+const User = require("../Models/UserModel");
 const Comment = require("../Models/commentModel");
 
 const createArticle = async (req, res) => {
