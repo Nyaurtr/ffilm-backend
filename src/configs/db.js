@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+dotenv.config()
 
-const URI = "mongodb+srv://katurtr:123456789katurtr@ffilm.78nju8p.mongodb.net/?retryWrites=true&w=majority&appName=FFilm";
+
+const URI = process.env.DATABASE_URL;
 
 const connectDB = async () => {
   try {
